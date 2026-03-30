@@ -50,20 +50,20 @@ export const CanvasPreview = forwardRef<HTMLDivElement, CanvasPreviewProps>(({
       {/* Header Area */}
       <div className="canvas-header">
         {/* Left Side: Brand Name (always visible) */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primaryColor }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+          <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primaryColor, flexShrink: 0 }}>
             <Icons.MonitorPlay size={24} style={{ color: '#000' }} />
           </div>
-          <span style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.025em' }}>رادار المستثمر</span>
+          <span style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.025em', whiteSpace: 'nowrap' }}>منصة المستثمر</span>
         </div>
 
         {/* Right Side: Selected Logo OR default tagline */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0 }}>
           {logo ? (
             <img src={logo} alt="Brand Logo" style={{ height: '3.5rem', maxWidth: '160px', objectFit: 'contain' }} />
           ) : (
             <>
-              <span style={{ fontSize: '0.875rem', fontWeight: 300, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.1em' }}>توصيات ذكية</span>
+              <span style={{ fontSize: '0.875rem', fontWeight: 300, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.1em', whiteSpace: 'nowrap' }}>توصيات ذكية</span>
               <div style={{ height: '0.25rem', width: '3rem', borderRadius: '9999px', marginTop: '0.5rem', backgroundColor: theme.primaryColor }}></div>
             </>
           )}
@@ -144,8 +144,6 @@ export const CanvasPreview = forwardRef<HTMLDivElement, CanvasPreviewProps>(({
       {/* Footer Area */}
       <div className="canvas-footer">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.875rem', opacity: 0.4 }}>رؤية 2030</span>
-            <div style={{ fontSize: '0.75rem', opacity: 0.3, fontFamily: 'monospace' }}>RADAR AL-MUSTATHMIR © 2025</div>
         </div>
 
         {/* Pagination Dots in Design */}
@@ -168,9 +166,9 @@ export const CanvasPreview = forwardRef<HTMLDivElement, CanvasPreviewProps>(({
 
       {/* 5px Brand Footer Stripe and Labels Wrapper */}
       <div className="design-brand-footer-bar" style={{ backgroundColor: theme.primaryColor }} />
-      <div className="design-brand-footer-labels">
-        <span className="footer-text-left">al_investor.com</span>
-        <span className="footer-text-right" dir="rtl">منصة المستثمر</span>
+      <div className="design-brand-footer-labels" style={{ color: theme.textColor }}>
+        <span className="footer-text-left">al-investor.com</span>
+        <span className="footer-text-right" dir="rtl">منصة المستثمر الاقتصادية</span>
       </div>
 
     </div>

@@ -102,12 +102,15 @@ function App() {
       // toPng uses SVG foreignObject which preserves browser's native text rendering (fixing RTL issues)
       const dataUrl = await toPng(canvasRef.current, {
         cacheBust: true,
-        pixelRatio: 3, // High resolution (3x)
+        pixelRatio: 4, // Up the resolution even more for sharp text
         backgroundColor: appState.theme.backgroundColor,
+        width: 1080,
+        height: 1080,
         style: {
-          // Explicitly force styles in the capture context
           direction: "rtl",
           fontFamily: appState.theme.fontFamily,
+          transform: "scale(1)",
+          transformOrigin: "top left",
         },
       });
 
@@ -132,7 +135,7 @@ function App() {
             <Icons.Layout style={{ color: '#000' }} size={20} />
           </div>
           <h1 className="brand-title">
-            رادار المستثمر
+            منصة المستثمر
             <span className="brand-badge">مصمم الكاروسيل</span>
           </h1>
         </div>
