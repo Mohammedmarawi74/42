@@ -12,13 +12,14 @@ import { EditorSidebar } from "./components/EditorSidebar";
 import { CanvasPreview } from "./components/CanvasPreview";
 import { CarouselNav } from "./components/CarouselNav";
 import { Icons } from "./components/ui/Icons";
+import { fetchAndInlineFonts } from "./utils/fontHelper";
 
 // Simple ID generator since we don't have uuid lib installed in this environment
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
 function App() {
   const [appState, setAppState] = useState<AppState>({
-    logo: null,
+    logo: "/logooo/logo-1.png",
     slides: INITIAL_SLIDES,
     activeSlideIndex: 0,
     theme: DEFAULT_THEME,
@@ -93,22 +94,27 @@ function App() {
     setIsExporting(true);
 
     try {
-      // Ensure fonts are fully loaded before capturing
+      // 1. Fetch and inline the IBM Plex Sans Arabic font as Base64 to bypass CORS in SVG
+      const GOOGLE_FONT_URL = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap";
+      const inlinedFontCSS = await fetchAndInlineFonts(GOOGLE_FONT_URL);
+
+      // Ensure fonts are fully loaded in the browser context as well
       await document.fonts.ready;
 
-      // Artificial delay to ensure any re-renders are complete
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      // Small delay for any pending re-renders
+      await new Promise((resolve) => setTimeout(resolve, 150));
 
       // toPng uses SVG foreignObject which preserves browser's native text rendering (fixing RTL issues)
       const dataUrl = await toPng(canvasRef.current, {
         cacheBust: true,
-        pixelRatio: 4, // Up the resolution even more for sharp text
+        pixelRatio: 4, // High resolution (1080 * 4 = 4320px for massive quality if needed, but width/height overrides)
         backgroundColor: appState.theme.backgroundColor,
         width: 1080,
         height: 1080,
+        fontEmbedCSS: inlinedFontCSS, // This is the secret to fixing Google Fonts in SVGs
         style: {
           direction: "rtl",
-          fontFamily: appState.theme.fontFamily,
+          fontFamily: "'IBM Plex Sans Arabic', sans-serif",
           transform: "scale(1)",
           transformOrigin: "top left",
         },

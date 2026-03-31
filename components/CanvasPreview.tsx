@@ -49,24 +49,22 @@ export const CanvasPreview = forwardRef<HTMLDivElement, CanvasPreviewProps>(({
 
       {/* Header Area */}
       <div className="canvas-header">
-        {/* Left Side: Brand Name (always visible) */}
+        {/* Right Side (Start in RTL): Logo + Brand Name */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
-          <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primaryColor, flexShrink: 0 }}>
-            <Icons.MonitorPlay size={24} style={{ color: '#000' }} />
-          </div>
+          {logo ? (
+            <img src={logo} alt="Brand Logo" style={{ height: '3.25rem', maxWidth: '160px', objectFit: 'contain' }} />
+          ) : (
+            <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primaryColor, flexShrink: 0 }}>
+              <Icons.MonitorPlay size={24} style={{ color: '#000' }} />
+            </div>
+          )}
           <span style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.025em', whiteSpace: 'nowrap' }}>منصة المستثمر</span>
         </div>
 
-        {/* Right Side: Selected Logo OR default tagline */}
+        {/* Left Side (End in RTL): Tagline */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0 }}>
-          {logo ? (
-            <img src={logo} alt="Brand Logo" style={{ height: '3.5rem', maxWidth: '160px', objectFit: 'contain' }} />
-          ) : (
-            <>
-              <span style={{ fontSize: '0.875rem', fontWeight: 300, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.1em', whiteSpace: 'nowrap' }}>توصيات ذكية</span>
-              <div style={{ height: '0.25rem', width: '3rem', borderRadius: '9999px', marginTop: '0.5rem', backgroundColor: theme.primaryColor }}></div>
-            </>
-          )}
+          <span style={{ fontSize: '0.875rem', fontWeight: 300, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.1em', whiteSpace: 'nowrap' }}>توصيات ذكية</span>
+          <div style={{ height: '0.25rem', width: '3rem', borderRadius: '9999px', marginTop: '0.5rem', backgroundColor: theme.primaryColor }}></div>
         </div>
       </div>
 
