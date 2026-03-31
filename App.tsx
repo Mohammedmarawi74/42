@@ -110,7 +110,7 @@ function App() {
         pixelRatio: 4, // High resolution (1080 * 4 = 4320px for massive quality if needed, but width/height overrides)
         backgroundColor: appState.theme.backgroundColor,
         width: 1080,
-        height: 1080,
+        height: 960,
         fontEmbedCSS: inlinedFontCSS, // This is the secret to fixing Google Fonts in SVGs
         style: {
           direction: "rtl",
@@ -147,7 +147,7 @@ function App() {
         </div>
 
         <div className="header-actions">
-          <div className="export-info">الدقة: 1080x1080px (PNG)</div>
+          <div className="export-info">الدقة: 1080x960px (PNG)</div>
           <button
             onClick={handleExport}
             disabled={isExporting}
